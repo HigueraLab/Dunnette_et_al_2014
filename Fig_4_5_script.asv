@@ -142,7 +142,7 @@ end
 %% Perform SEA, using funciton SEA.m
 
 x = response.xi;
-Y = response.residuals;
+Y = response.yi;
 events
 params
 

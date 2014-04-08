@@ -60,7 +60,7 @@ for l = 1:events.nSeries    % For each event time series...
         % in each response series, for event i. Rows are time steps, 
         % columns are response variables. 
         
-        composite(i,~isnan(sampleIn),:,l) = composite_i; % Response 
+        composite(i,find(~isnan(sampleIn)),:,l) = composite_i; % Response 
         % values from each response varialbe.      
     end
 end
