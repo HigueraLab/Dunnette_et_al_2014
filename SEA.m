@@ -1,27 +1,6 @@
 function [composite] = SEA(x,Y,events,params)
 % SEA.m
 %
-% Given inputs of n event series ("response_res")...
-
-% Requires equally-spaced samples.
-
-% events.x -- 
-% events.nSeries
-
-% params.interpValue --
-% params.smWindow --
-% params.eventWindow --
-% params.bin -- 
-
-% response.n
-% response.x
-% response.y
-% response.xi
-% response.yi
-% response.ySm
-% response.residuals
-
-
 % Created by: P.E. Higuera
 % Created on: 18 July, 2012
 %
@@ -31,12 +10,17 @@ function [composite] = SEA(x,Y,events,params)
 
 %% Create composite record
 [~,nResponseVar] = size(Y); % Number of response variables input. 
-composite = NaN*ones(max(sum(events.x)),length(params.bin),nResponseVar,...
+response = NaN*ones(max(sum(events.x)),length(params.bin),nResponseVar,...
     events.nSeries);
             % Space for response values, where i = events, j = bins before 
-            % and after an events, k = each response variable, and l = 
+            % and after an event, k = each response variable, and l = 
             % event time series. 
 
+composite = NaN(length(params.bin),nResponseVar,events.nSeries);
+            % Space for composite record, where i = bins before and after
+            % an event, j = each response variable, and k = event time
+            % series. 
+            
 for l = 1:events.nSeries    % For each event time series...
     event_in = find(events.x(:,l) > 0);         % Index for events					
     eventYr = round(x(event_in));   % Event year, rounded
@@ -56,11 +40,15 @@ for l = 1:events.nSeries    % For each event time series...
             disp('Note: Event too close series end - response series trimmed') 
         end
         
-        composite_i = Y(sampleIn(~isnan(sampleIn)),:);% Composite values 
+        response_i = Y(sampleIn(~isnan(sampleIn)),:);% Response values 
         % in each response series, for event i. Rows are time steps, 
         % columns are response variables. 
         
-        composite(i,~isnan(sampleIn),:,l) = composite_i; % Response 
-        % values from each response varialbe.      
+        response(i,~isnan(sampleIn),:,l) = response_i; % Response values 
+        % from each response varialbe.      
     end
+    composite(:,:,l) = squeeze(nanmean(response(:,:,:,l),1));   % Mean 
+        % value across all events, for each bin (i) before and after
+        % events, for each response variable (j), and for each event series
+        % (k). 
 end

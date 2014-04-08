@@ -64,28 +64,31 @@ params.eventWindow = [-50 75] ; % [yr] Years to analyze, before and after
 params.bin = [round(params.eventWindow(1)/params.interpValue):...
     round(params.eventWindow(2)/params.interpValue)];   % Bins to use 
                                 % before and after events.
-
+params.nBoot = 1000;            % Number of bootstrap resampling, for CIs.
 yrCutOff = [-57 4300];          % [cal yr BP] Years to use in the analysis                              
 x_lim = yrCutOff;               % x-axis limits for plotting
 
 %% Load data and create variables
 cd(workingDir)      % Change to working directory
-data = csvread('CH10_biogeochemData.csv',1,3);      % Biogeochemical data
-colName = {'topCm';'botCm';'topAge';'botAge';['\delta^1^5N (' char(8240) ')'];'C:N'; 'N (%)';'BD(g/cm^3)';	
-    ['\delta^1^3C (' char(8240) ')']};     % Column headers, and units
+data = csvread('CH10_biogeochemData.csv',1,4);      % Biogeochemical data
+colName = {'topCm';'botCm';'topAge';'botAge';...
+   ['\delta^1^5N (' char(8240) ')']; 'N (%)';...
+   ['\delta^1^3C (' char(8240) ')']; 'C (%)'; 'C:N';...
+   ['  BlkDens  ';'(g cm^{-3})'];...
+   ['      C_a_c_c      ' ; '(g cm^{-2} yr^{-1})']};     % Column headers, and units
 cd(startDir)        % Change direcotry back to starting directory.
 
 %% Define response series
-in = [6 10 13 9 7 11];              % Index for response vars., from data
-response.x = mean(data(:,4:5),2);   % [cal yr BP] Mid-sample age of 
+in = [5 9 11 8 6 10];                 % Index for response vars., from data
+response.x = mean(data(:,3:4),2);   % [cal yr BP] Mid-sample age of 
                                     % samples; redefined three lines below
 in2 = find([(response.x >= yrCutOff(1)) .* (response.x <= yrCutOff(2))]);
     % Index for all samples within desired age range, defined by yrCutOff   
-response.x = mean(data(in2,4:5),2); % [cal yr BP] Mid-sample age of samples
+response.x = mean(data(in2,3:4),2); % [cal yr BP] Mid-sample age of samples
 response.y = data(in2,in);          % Response time series; units are in 
                                         % params.responseName.  
 response.n = length(in);            % Number of response series. 
-
+response.name = colName(in);        % Name and units for each response var.
 %% Interpolate and smooth response series, and calculate residuals
 response.xi = [yrCutOff(1):params.interpValue:max(response.x)]';
                 % [cal yr BP] Interpolated x values
@@ -139,88 +142,24 @@ for i = 1:nLSEF_hiRes
        events.x(in,2) = 1;     % Make this value 1
 end
 
-%% Perform SEA, using funciton SEA.m
+%% Perform SEA, using funcitond SEA.m, and SEA_CI.m
 
-x = response.xi;
-Y = response.residuals;
-events
-params
+params.nBoot = 10000;     % Number of bootstraps for confidence intervals.
+params.block = 5;       % [samples] Block size for resampling series for 
+                            % construction of confidence intervals
+x = response.xi;        % Interpolated dates for response series
+Y = response.residuals; % Perform SEA using residual values
 
-%% Create composite records, using the function "createComposite.m"
-
-                                                    
-                                                    
-composite = createComposite(2,[
-                                                    
-                                                    
-composite1 = createComposite(nEventSeries1,events1,nEvents1,nBins,...
-    response.n,response.x,eventBin,response.residuals);
-
-composite2 = createComposite(nEventSeries2,events2,nEvents2,nBins,...
-    response.n,response.x,eventBin,response.residuals);
-
-
-%% Derive bootstrapped confidence intervals for each composite record.
-    
-nBoot = 10000;
-
-mearesponse.n_i_1 = NaN*ones(nBoot,nBins,response.n,nEventSeries1);
-
-for i = 1:nBoot  
-    % Create random response series
-    blk=5; %PVD Edit; Establishes size for block resampling
-    tempLength=(length(response.residuals)-blk); %PVD Edit; 
-    recLength=1:(round2(tempLength,blk)); % PVD Edit (Lines 15-16 construct time series of a length that can be shuffled in blocks of 5; i.e.,nearest multiple of 5)
-    response.residuals2=response.residuals(recLength,:); %PVD Edit; response.residuals2 is the slightly abbreviated time series used to construct the random distributions
-    [~,nRandResponse] = size(response.residuals2);   % Number of response vars.
-
-    
-    
-    
-    rand_composite1 = createFullRandComposite(nEventSeries1,events1,...
-        nEvents1,nBins,response.n,response.x,eventBin,response.residuals);
-
-    for l = 1:nEventSeries1
-        for k = 1:response.n
-            mearesponse.n_i_1(i,:,k,l) = nanmean(rand_composite1(:,:,k,l)); 
-        end
-    end
-end
-
-mearesponse.n_CI_1 = NaN*ones(4,nBins,response.n,nEventSeries1);
-for l = 1:nEventSeries1
-    for k = 1:response.n
-        mearesponse.n_CI_1(:,:,k,l) = prctile(mearesponse.n_i_1(:,:,k,l),...
-            [0.5 2.5 97.5 99.5]);
-    end
-end
-%mearesponse.n_i_1%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-mearesponse.n_i_2 = NaN*ones(nBoot,nBins,response.n,nEventSeries2);
-
-for i = 1:nBoot    % 
-    
-    rand_composite2 = createFullRandComposite(nEventSeries2,events2,nEvents2,nBins,...
-    response.n,response.x,eventBin,response.residuals);
-
-    for l = 1:nEventSeries2
-        for k = 1:response.n
-            mearesponse.n_i_2(i,:,k,l) = nanmean(rand_composite2(:,:,k,l)); 
-        end
-    end
-end
-
-mearesponse.n_CI_2 = NaN*ones(4,nBins,response.n,nEventSeries2);
-for l = 1:nEventSeries2
-    for k = 1:response.n
-        mearesponse.n_CI_2(:,:,k,l) = prctile(mearesponse.n_i_2(:,:,k,l),...
-           [0.5 2.5 97.5 99.5]);
-
-    end
-end
-%mearesponse.n_i_2
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+[composite] = SEA(x,Y,events,params); 
+        % composite: Mean value across all events, for 
+        % each bin (i) before and after events, for each response 
+        % variable (j), and for each event series (k).    
+[composite_CI] = SEA_CI(x,Y,events,params);  
+    % composite_CI: percentile values for each bin before and after
+    % events (i), each response series (j), each event series (k), and each
+    % percentile level (l). Percentiles are as follows: 0.5 99.5, 
+    % corresponding to 99% CI, 2.5 and 97.5, corresponding to 95 CI, and 
+    % 5 and 95, correspnding to 90% CI> 
 
 %% Figure 4: Time series
 
@@ -232,75 +171,61 @@ figure(2); clf
 set(gcf,'color','w','units','centimeters','position',[15 0 12.35 23.35]); 
     subplotIn = [1:6:response.n*6]; % This is: 1 7 13 19 25 31; refers to placement of the time series plot in a figure divided into 24 slots (see bar graphs)
 
-j = 1;
 for i = 1:response.n
-
-       subplot(response.n,1,i)
-       plot(response.x,response.y(:,i),'k')
-       set(gca,'FontSize',fs,'FontWeight','b');
-       set(gca,'xdir','rev','tickdir','out')
-       box off
-       hold on
-       axis tight
-       y_lim = get(gca,'ylim');
-       
-       if i == 3 % If C_acc, change y-lim
-           ylim([y_lim(1) 1.8])
-       end
-       
-        HSC = events2(events2(:,1+j)>0,1);
-        for k = 1:length(HSC)
-            plot([HSC(k) HSC(k)],[y_lim(1) 0.90*y_lim(2)],'-r',...
-                'linewidth',1)
-        end
-        LSE = events1(events1(:,1+j)>0,1);
-        for k = 1:length(LSE)
-             plot([LSE(k) LSE(k)],[y_lim(1) 0.90*y_lim(2)],'--b',...
-                 'linewidth',1)
-        end           
-        h3 = plot(events3(events3(:,1+j)>0,1),...  
-            0.90.*y_lim(2).*events3(events3(:,1+j)>0,1+j),'.',...
-            'color',[0.5 0.5 0.5]);             
-            hold on
-            plot(response.x,response.ySm(:,i),'k','linewidth',1.5) ;
-        
-        if i < response.n
-           set(gca,'xticklabel','')
-        else
-           xlabel('Calibrated years BP','FontSize',fs)
-        end
-                
-        set(gca,'xtick',[0:500:4000],'ticklength',[0.012 0.012]);
-        xlim(x_lim)
-        ylabel(params.responseName(i))
-        pos = get(gca,'position');
-        pos(4) = 0.12;
-        pos(1) = 0.17;
-        set(gca,'position',pos)
-        
+    subplot(response.n,1,i)
+    plot(response.x,response.y(:,i),'k')    % Plot response time series.
+    axis tight
+	y_lim = get(gca,'ylim');
+	if i == 3 % If C_acc, change y-lim
+        y_lim = [y_lim(1) 1.8];
+        ylim(y_lim)
+    end
+	hold on
+    plot(response.xi,response.ySm(:,i),'k','linewidth',1.5) % Plot smoothed
+                                            % response time seires. 
+	for k = 1:length(HSCF)          % Plot HSCF as lines
+        plot([HSCF(k) HSCF(k)],[y_lim(1) 0.90*y_lim(2)],'-r','linewidth',1)
+    end
+	for k = 1:length(LSEF_hiRes)    % Plot LSEF as dashed lines
+        plot([LSEF_hiRes(k) LSEF_hiRes(k)],[y_lim(1) 0.90*y_lim(2)],...
+                 '--b','linewidth',1)
+    end           
+	plot(LSEF_lowRes,0.90.*y_lim(2),'.','color',[0.5 0.5 0.5])  % Plot 
+        % fires not used in SEA as dots.     
+    box off
+    if i < response.n
+        set(gca,'xticklabel','')
+    else
+        xlabel('Calibrated years BP','FontSize',fs,'FontWeight','Bold')
+	end
+    set(gca,'FontSize',fs,'FontWeight','b','xdir','rev','tickdir','out',...
+        'xtick',[0:500:4000],'ticklength',[0.012 0.012],'xlim',x_lim)
+    ylabel(response.name(i))
+    % Position the plot:
+    pos = get(gca,'position');
+    pos(4) = 0.12;
+    pos(1) = 0.17;
+    set(gca,'position',pos)    
 end
 
 %% Figure 5: SEA results
 figure(3); clf
 set(gcf,'color','w','units','centimeters','position',[25 0 12.35 23.35]); 
-plotIn = [1:2:response.n*2];
+plotIn = [1:2:response.n*2];  
 
 for i = 1:response.n
-        % (c)
+        % Lower severity / extra local fires
         subplot(response.n,2,plotIn(i)+1)
+        j = 2;  
         set(gca,'tickdir','out');
         box off
-        x = eventBin .* params.interpValue;
-        y = nanmean(composite1(:,:,i,j));  
-       
-        y2 = squeeze(composite1(:,:,i,j));
+        x = params.interpValue .* params.bin;
+        y = composite(:,i,j);  
         hold on
         h4 = bar(x,y,1);
         set(h4,'facecolor',[0.5 0.5 0.5],'edgecolor',[0.5 0.5 0.5])
-        plot(x,mearesponse.n_CI_1([1],:,i,j),'--k')
-        plot(x,mearesponse.n_CI_1([2],:,i,j),'-k')
-        plot(x,mearesponse.n_CI_1([3],:,i,j),'-k')
-        plot(x,mearesponse.n_CI_1([4],:,i,j),'--k')
+        plot(x,squeeze(composite_CI(:,i,j,[1:2])),'--k')
+        plot(x,squeeze(composite_CI(:,i,j,[3:4])),'-k')
         axis tight 
         y_lim = get(gca,'ylim');    
         plot([0 0],y_lim_bc(i,:),'--b','linewidth',1)% Alter this to change blue line 
@@ -324,45 +249,41 @@ for i = 1:response.n
             set(gca,'xticklabel',{'-50','','0','','50',});
          end
 
-%%%%    (b)
+        % High severity catchment fires
         subplot(response.n,2,plotIn(i))
-        x = eventBin .* params.interpValue;
+        j = 1;
         set(gca,'tickdir','out');
-       
-        yb = nanmean(composite2(:,:,i,j));   
-        y2b = squeeze(composite2(:,:,i,j));
-        h5= bar(x,yb,1);
+        box off
+        x = params.interpValue .* params.bin;
+        y = composite(:,i,j);  
         hold on
-        set(h5,'facecolor',[0.5 0.5 0.5],'edgecolor',[0.5 0.5 0.5])
-        plot(x,mearesponse.n_CI_2([1],:,i,j),'--k') 
-        plot(x,mearesponse.n_CI_2([2],:,i,j),'-k')
-        plot(x,mearesponse.n_CI_2([3],:,i,j),'-k')
-        plot(x,mearesponse.n_CI_2([4],:,i,j),'--k')
+        h4 = bar(x,y,1);
+        set(h4,'facecolor',[0.5 0.5 0.5],'edgecolor',[0.5 0.5 0.5])
+        plot(x,squeeze(composite_CI(:,i,j,[1:2])),'--k')
+        plot(x,squeeze(composite_CI(:,i,j,[3:4])),'-k')
         axis tight
 %         y_lim = get(gca,'ylim');
         box off
         set(gca,'ylim',y_lim_bc(i,:),'ytick',y_tick_bc(i,:),...
             'xtick',[-50:25:75],'tickdir','out',...
             'ticklength',[0.06 0.06],'FontSize',fs,'FontWeight','b');
-        ylabel(params.responseName(i))
+        ylabel(response.name(i))
         pos = get(gca,'position');
         pos(4) = 0.11;
         pos(1) = 0.18;
         set(gca,'position',pos)
 
         if i == 1
-%             title('Composite Residual Response','fontsize',7,'fontweight','b')
             title ({'High-severity' 'catchment fires'},'fontweight',...
                 'bold','FontSize',fs)
         end
         if i < response.n
            set(gca,'xticklabel','')
-       else
+        else
             xlabel({' ' '                                                Lag (years)'},...
                 'fontsize',fs,'fontweight','b')
             set(gca,'xticklabel',{'-50','','0','','50',''});
         end
         set(gca,'xlim',[-50 75])
         plot([0 0],y_lim_bc(i,:),'r','linewidth',1)
-
 end
