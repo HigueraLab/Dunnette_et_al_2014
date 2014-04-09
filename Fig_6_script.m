@@ -12,9 +12,16 @@
 % (left column) and ~20-50 years (right column) after each event. Bulk 
 % density is abbreviated by “BlkDens.”
 %
-% Requires the following files:
-% CH10_biogeochemData.csv
-% CH10_charResults.csv
+% FILE REQUIREMENTS:
+%   (1) CH10_biogeochemData.csv -- Biogeochemcial data from Chickaree Lk.
+%   (2) CH10_charResults.csv -- CharAnalysis results from Chickaree Lk.
+
+% DEPENDENCIES: 
+%
+% CITATION, FILES, AND SELF-AUTHORED FUNCTIONS AVAILABLE FROM FigShare
+%   Higuera, Philip E.; Dunnette, Paul V.; al., et (2014): Data, code, and 
+%   figures from Dunnette et al. 2014. figshare. 
+%   http://dx.doi.org/10.6084/m9.figshare.988687
 %
 % Created by: P.V. Dunnette
 % Created on: March, 2013
