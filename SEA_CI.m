@@ -1,8 +1,43 @@
 function [composite_CI] = SEA_CI(x,Y,events,params)
-% SEA_CI
+% SEA_CI.m
+%
+% Confidence interveral for Superposed Epoch Analysis, or compositing:
+% SEA_CI.m requires SEA.m be run first.
+% takes as input a matrix of event time series, events, and a 
+% matrix response time sereis, Y, and calculates the average (composite)
+% value in the response series for samples before and after each event. 
+% 
+% TAKES AS INPUTS:
+% x: m-by-1 vector with sample id for each sample in Y, usually time.
+% Y: m-by-n matrix where each row (m) is a sample, and each column is a 
+%   response series. Y may have mulitple columns (n), or response
+%   series, but all columns in Y should have the same number of row. When 
+%   n > 1, SEA.m will return composite records for each response series. 
+% events: m-by-n matrix, where the number of rows (m) equals those in x and
+%   Y, and values are 0 (no event) or 1 (event). Each column, n, represents
+%   and independent event series. 
+% params: structure with multiple fields. Only one field is neede by SEA.m
+%   params.bin: Number of samples to use in the composite, before and after
+%   each event. The value 0 represents the event, and negative values
+%   represent values before the event. 
+%
+% RETURNS:
+% composite: m-by-n-by-o matrix, where m = bins as defined by params.bin, 
+%   n = each response series (equal to n of matrix Y), and o = each event
+%   series defined in events (equal to n of matrix events).
+%
+% DEPENDENCIES: 
+%   (1) nanmean.m -- Matlab function, from the Matlab statistics toolbox.
+%
+% CITATION:
+%   Higuera, Philip E.; Dunnette, Paul V.; al., et (2014): Data, code, and 
+%   figures from Dunnette et al. 2014. figshare. 
+%   http://dx.doi.org/10.6084/m9.figshare.988687
 %
 % Created by: P.E. Higuera
 % Created on: 18 July, 2012
+% Updated on: 8 April, 2014 -- Updated for submission with Dunnette et al.
+% 2014, to make function more generalizable.  
 %
 % University of Idaho, PaleoEcology and Fire Ecology Lab
 % http://www.uidaho.edu/cnr/paleoecologylab
@@ -10,7 +45,7 @@ function [composite_CI] = SEA_CI(x,Y,events,params)
 
 %% Derrive variables
 [~,nResponseVar] = size(Y); % Number of response variables input. 
-
+[~,nEventSeries] = size(events); % Number of event series
 
 %% Randomzie Y via block resampling
 nBoot = params.nBoot;               % Number of bootstrapped samples
@@ -18,7 +53,7 @@ nBoot = params.nBoot;               % Number of bootstrapped samples
 blockSize = params.block;           % [samples] Block size          
 nBlocks = floor(n / blockSize);     % Number of blocks, rounded down
 
-composite_boot = NaN(length(params.bin),nResponseVar,events.nSeries,nBoot);
+composite_boot = NaN(length(params.bin),nResponseVar,nEventSeries,nBoot);
             % Space for composite record, where i = bins before and after
             % an event, j = each response variable, k = event time
             % series, and l = nBoot samples. 
