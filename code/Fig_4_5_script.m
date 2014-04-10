@@ -1,4 +1,4 @@
-% Fig_4_5_script.m
+%% Fig_4_5_script.m
 %
 % Make Figure 4 and Figure 5 from:
 %   Dunnette P.V., P.E. Higuera, K.K. McLauchlan, K.M. Derr, C.E. Briles, 
@@ -55,7 +55,7 @@
 clear all
  
 %% Set working directories: directories where input data are located
-workingDir = 'L:\4_archivedData\Dunnette_et_al_2014_NewPhytologist\CH10_biogeochem\';
+workingDir = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_biogeochem\';
 startDir = pwd;     % Record starting path
  
 %% User-set parameters, for SEA.m and plotting

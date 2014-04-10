@@ -1,4 +1,4 @@
-% Fig_3_script.m
+%% Fig_3_script.m
 %
 % Make Figure 3 from:
 %   Dunnette P.V., P.E. Higuera, K.K. McLauchlan, K.M. Derr, C.E. Briles, 
