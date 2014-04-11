@@ -98,8 +98,10 @@ p.footer {
 <span class="comment">% phiguera@uidaho.edu</span>
 
 clear <span class="string">all</span>
-</pre><h2>Set working directories: directories where input data are located<a name="2"></a></h2><pre class="codeinput">workingDir = <span class="string">'L:\4_archivedData\Dunnette_et_al_2014\CH10_biogeochem\'</span>;
+</pre><h2>Set working directories: directories where input data are located<a name="2"></a></h2><pre class="codeinput"><span class="comment">%%%% IF ALL FILES ARE LOCATED IN THE SAME DIRECTORY AS THIS SCRIPT, CHANGE</span>
+<span class="comment">%%%% workdingDir to 'pwd'</span>
 startDir = pwd;                  <span class="comment">% Record starting path</span>
+workingDir = <span class="string">'L:\4_archivedData\Dunnette_et_al_2014\CH10_biogeochem\'</span>;
 </pre><h2>Load data and create variables<a name="3"></a></h2><pre class="codeinput">cd(workingDir)                   <span class="comment">% Change to working directory</span>
 data1 = csvread(<span class="string">'CH10_biogeochemData.csv'</span>,1,3);
 data2 = csvread(<span class="string">'CH10_LOI_Data.csv'</span>,1,6);
@@ -319,8 +321,10 @@ title([<span class="string">'r = '</span> num2str(round(RHO9*100)/100)<span clas
 clear all
 
 %% Set working directories: directories where input data are located
-workingDir = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_biogeochem\';
+%%%% IF ALL FILES ARE LOCATED IN THE SAME DIRECTORY AS THIS SCRIPT, CHANGE
+%%%% workdingDir to 'pwd'
 startDir = pwd;                  % Record starting path
+workingDir = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_biogeochem\';
 
 %% Load data and create variables
 

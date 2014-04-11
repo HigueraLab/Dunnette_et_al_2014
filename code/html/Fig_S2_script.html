@@ -62,8 +62,13 @@ p.footer {
   color: gray;
 }
 
-  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Fig_S2_script.m</a></li><li><a href="#2">Input variables</a></li><li><a href="#3">Set working directories: directories where input data are located</a></li><li><a href="#4">Load input data:</a></li><li><a href="#5">Run pollenDiagram_ROMO.m function:</a></li></ul></div><h2>Fig_S2_script.m<a name="1"></a></h2><p>Make Figure S2 from:   Dunnette P.V., P.E. Higuera, K.K. McLauchlan, K.M. Derr, C.E. Briles,   M.H. Keefe. 2014. Biogeochemical impacts of wildfires over four   millennia in a Rocky Mountain subalpine watershed.   New Phytologist Accepted.</p><p>Fig. S2. Pollen diagram for Chickaree Lake. Pollen was sampled at a median interval of 7.5 cm (~60 yr) in the upper 175 cm of the core and a median interval of 25 cm (~200 yr) below 175 cm.</p><p>FILE REQUIREMENTS:   (1) CH10_PollenCounts.xls -- Raw pollen counts for Chickaree Lake, CO   (2) CH10_charData.xls --  charcoal data, for use in CharAnalysis   (3) CH10_charResults.xls --  results from CharAnalysis</p><p>DEPENDENCIES:   (1) pollenDiagram_ROMO.m -- Matlab function to plot pollen data. Note   that the format of Fig. S2 differs from the default figure created from   this function. The formatting in the figure was manually changed after   the output from this function.</p><p>CITATION, FILES, AND SELF-AUTHORED FUNCTIONS AVAILABLE FROM FigShare   Higuera, P.E. and P.V. Dunnette. 2014. Data, code, and   figures from Dunnette et al. 2014. figshare.   <a href="http://dx.doi.org/10.6084/m9.figshare.988687">http://dx.doi.org/10.6084/m9.figshare.988687</a></p><p>Created by: P.E. Higuera Created on: 2007 Updated: Not tracked; most recent 4/2014 by P.V. Dunnette Edited: 4/2014 for publication, by P.E. Higuera.</p><p>University of Idaho, PaleoEcology and Fire Ecology Lab <a href="http://www.uidaho.edu/cnr/paleoecologylab">http://www.uidaho.edu/cnr/paleoecologylab</a> <a href="mailto:phiguera@uidaho.edu">phiguera@uidaho.edu</a></p><pre class="codeinput">clear <span class="string">all</span>
-</pre><h2>Input variables<a name="2"></a></h2><pre class="codeinput">site = {<span class="string">'Chickaree Lake, CO'</span>};    <span class="comment">% site name</span>
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Fig_S2_script.m</a></li><li><a href="#2">Set working directories: directories where input data are located</a></li><li><a href="#3">Input variables</a></li><li><a href="#4">Load input data:</a></li><li><a href="#5">Run pollenDiagram_ROMO.m function:</a></li></ul></div><h2>Fig_S2_script.m<a name="1"></a></h2><p>Make Figure S2 from:   Dunnette P.V., P.E. Higuera, K.K. McLauchlan, K.M. Derr, C.E. Briles,   M.H. Keefe. 2014. Biogeochemical impacts of wildfires over four   millennia in a Rocky Mountain subalpine watershed.   New Phytologist Accepted.</p><p>Fig. S2. Pollen diagram for Chickaree Lake. Pollen was sampled at a median interval of 7.5 cm (~60 yr) in the upper 175 cm of the core and a median interval of 25 cm (~200 yr) below 175 cm.</p><p>FILE REQUIREMENTS:   (1) CH10_PollenCounts.xls -- Raw pollen counts for Chickaree Lake, CO   (2) CH10_charData.xls --  charcoal data, for use in CharAnalysis   (3) CH10_charResults.xls --  results from CharAnalysis</p><p>DEPENDENCIES:   (1) pollenDiagram_ROMO.m -- Matlab function to plot pollen data. Note   that the format of Fig. S2 differs from the default figure created from   this function. The formatting in the figure was manually changed after   the output from this function.</p><p>CITATION, FILES, AND SELF-AUTHORED FUNCTIONS AVAILABLE FROM FigShare   Higuera, P.E. and P.V. Dunnette. 2014. Data, code, and   figures from Dunnette et al. 2014. figshare.   <a href="http://dx.doi.org/10.6084/m9.figshare.988687">http://dx.doi.org/10.6084/m9.figshare.988687</a></p><p>Created by: P.E. Higuera Created on: 2007 Updated: Not tracked; most recent 4/2014 by P.V. Dunnette Edited: 4/2014 for publication, by P.E. Higuera.</p><p>University of Idaho, PaleoEcology and Fire Ecology Lab <a href="http://www.uidaho.edu/cnr/paleoecologylab">http://www.uidaho.edu/cnr/paleoecologylab</a> <a href="mailto:phiguera@uidaho.edu">phiguera@uidaho.edu</a></p><pre class="codeinput">clear <span class="string">all</span>
+</pre><h2>Set working directories: directories where input data are located<a name="2"></a></h2><pre class="codeinput"><span class="comment">%%%% IF ALL FILES ARE LOCATED IN THE SAME DIRECTORY AS THIS SCRIPT, CHANGE</span>
+<span class="comment">%%%% workdingDir to 'pwd'</span>
+startDir = pwd;                  <span class="comment">% Record starting path</span>
+workingDir = <span class="string">'L:\4_archivedData\Dunnette_et_al_2014\CH10_pollen\'</span>;
+workingDir2 = <span class="string">'L:\4_archivedData\Dunnette_et_al_2014\CH10_charcoal\'</span>;
+</pre><h2>Input variables<a name="3"></a></h2><pre class="codeinput">site = {<span class="string">'Chickaree Lake, CO'</span>};    <span class="comment">% site name</span>
 zd = [-57 1200];   <span class="comment">% zone dates</span>
 szd = [-9999];  <span class="comment">% sub-zone divisions</span>
 taxa_plot = [3:5 15 17 18 7 23 44 42 51];  <span class="comment">% Taxa to include in the plot %Adjust this.</span>
@@ -73,9 +78,6 @@ ybp_stop = -60;      <span class="comment">% [cal ybp] year to stop record</span
 peaks = 0;           <span class="comment">% 1 = plot peaks (with background), 0 = don't</span>
 transform = 0;       <span class="comment">% 0 == none, 1 = sqrt pollen</span>
 printing = 0;        <span class="comment">% Save file? 1 == yes, 0 == no</span>
-</pre><h2>Set working directories: directories where input data are located<a name="3"></a></h2><pre class="codeinput">workingDir = <span class="string">'L:\4_archivedData\Dunnette_et_al_2014\CH10_pollen\'</span>;
-workingDir2 = <span class="string">'L:\4_archivedData\Dunnette_et_al_2014\CH10_charcoal\'</span>;
-startDir = pwd;                  <span class="comment">% Record starting path</span>
 </pre><h2>Load input data:<a name="4"></a></h2><p>Load charcoal data:</p><pre class="codeinput">cd(workingDir2)                   <span class="comment">% Change to working directory</span>
 char_counts = csvread(<span class="string">'CH10_charData.csv'</span>,1,0);
 char_peaks = csvread(<span class="string">'CH10_charResults.csv'</span>,1,0);
@@ -142,6 +144,13 @@ pol_percent = pol_dat(:,:,1)';
 % phiguera@uidaho.edu
 clear all
 
+%% Set working directories: directories where input data are located
+%%%% IF ALL FILES ARE LOCATED IN THE SAME DIRECTORY AS THIS SCRIPT, CHANGE
+%%%% workdingDir to 'pwd'
+startDir = pwd;                  % Record starting path
+workingDir = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_pollen\';
+workingDir2 = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_charcoal\';
+
 %% Input variables
 site = {'Chickaree Lake, CO'};    % site name
 zd = [-57 1200];   % zone dates
@@ -153,11 +162,6 @@ ybp_stop = -60;      % [cal ybp] year to stop record
 peaks = 0;           % 1 = plot peaks (with background), 0 = don't
 transform = 0;       % 0 == none, 1 = sqrt pollen
 printing = 0;        % Save file? 1 == yes, 0 == no
-
-%% Set working directories: directories where input data are located
-workingDir = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_pollen\';
-workingDir2 = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_charcoal\';
-startDir = pwd;                  % Record starting path
 
 %% Load input data:
 % Load charcoal data:

@@ -36,6 +36,13 @@
 % phiguera@uidaho.edu
 clear all
 
+%% Set working directories: directories where input data are located
+%%%% IF ALL FILES ARE LOCATED IN THE SAME DIRECTORY AS THIS SCRIPT, CHANGE
+%%%% workdingDir to 'pwd'
+startDir = pwd;                  % Record starting path
+workingDir = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_pollen\';
+workingDir2 = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_charcoal\';
+
 %% Input variables
 site = {'Chickaree Lake, CO'};    % site name
 zd = [-57 1200];   % zone dates
@@ -47,11 +54,6 @@ ybp_stop = -60;      % [cal ybp] year to stop record
 peaks = 0;           % 1 = plot peaks (with background), 0 = don't
 transform = 0;       % 0 == none, 1 = sqrt pollen
 printing = 0;        % Save file? 1 == yes, 0 == no
-
-%% Set working directories: directories where input data are located
-workingDir = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_pollen\';
-workingDir2 = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_charcoal\';
-startDir = pwd;                  % Record starting path
 
 %% Load input data:
 % Load charcoal data:

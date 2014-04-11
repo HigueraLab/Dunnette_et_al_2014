@@ -37,14 +37,14 @@
 % University of Idaho, PaleoEcology and Fire Ecology Lab
 % http://www.uidaho.edu/cnr/paleoecologylab
 % phiguera@uidaho.edu
-
 clear all
  
 %% Set working directories: directories where input data are located
+%%%% IF ALL FILES ARE LOCATED IN THE SAME DIRECTORY AS THIS SCRIPT, CHANGE
+%%%% workdingDir to 'pwd'
+startDir = pwd;     % Record starting path
 workingDir = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_charcoal\';
 workingDir2 = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_MS\';
- 
-startDir = pwd;     % Record starting path
  
 %% Load data and create variables
 cd(workingDir)      % Change to working directory

@@ -46,9 +46,11 @@
 clear all
 
 %% Set working directories: directories where input data are located
+%%%% IF ALL FILES ARE LOCATED IN THE SAME DIRECTORY AS THIS SCRIPT, CHANGE
+%%%% workdingDir to 'pwd'
+startDir = pwd;     % Record starting path
 workingDir = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_biogeochem\';
 workingDir2 = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_charcoal\';
-startDir = pwd;     % Record starting path
 
 %% User-set parameters, for SEA.m and plotting
 params.interpValue = 5 ;        % [yr] Years to interpolate to 

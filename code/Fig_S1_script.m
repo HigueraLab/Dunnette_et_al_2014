@@ -48,8 +48,10 @@
 clear all
 
 %% Set working directories: directories where input data are located
-workingDir = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_biogeochem\';
+%%%% IF ALL FILES ARE LOCATED IN THE SAME DIRECTORY AS THIS SCRIPT, CHANGE
+%%%% workdingDir to 'pwd'
 startDir = pwd;                  % Record starting path
+workingDir = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_biogeochem\';
 
 %% Load data and create variables
 

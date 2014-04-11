@@ -1,0 +1,43 @@
+LakeName,Top_cm,Bot_cm,MaterialDated,LaboratoryID_*1,210PbActivity_dpm_g-1_OR_14CDate_yr BP_*2,std_dev,Modeled_OR_Calibrated_date_calYrBP_*3,95%CI_low,95%CI_hi,Notes
+Chickaree Lake,0.8,2.4,Bulk gyttja,Flett Research,77.33,1.31,-57,-58,-56,na
+Chickaree Lake,2.4,3.5,Bulk gyttja,Flett Research,77.85,1.18,-53,-53,-52,na
+Chickaree Lake,3.5,4.6,Bulk gyttja,Flett Research,66.27,0.82,-48,-49,-48,na
+Chickaree Lake,4.6,6.7,Bulk gyttja,Flett Research,57.99,0.86,-43,-44,-42,na
+Chickaree Lake,6.7,8.9,Bulk gyttja,Flett Research,45.53,0.71,-37,-38,-36,na
+Chickaree Lake,8.9,11,Bulk gyttja,Flett Research,45.88,1.09,-31,-32,-30,na
+Chickaree Lake,11,13.2,Bulk gyttja,Flett Research,30.27,0.63,-23,-25,-22,na
+Chickaree Lake,13.2,15.4,Bulk gyttja,Flett Research,25.48,0.55,-16,-17,-15,na
+Chickaree Lake,15.4,18.6,Bulk gyttja,Flett Research,19.88,0.5,-7,-9,-6,na
+Chickaree Lake,18.6,20.8,Bulk gyttja,Flett Research,23.28,0.47,8,6,10,na
+Chickaree Lake,20.8,21.9,Bulk gyttja,Flett Research,19.57,0.45,23,20,25,na
+Chickaree Lake,21.9,25.1,Bulk gyttja,Flett Research,15.9,0.44,30,27,33,na
+Chickaree Lake,25.1,26.2,Bulk gyttja,Flett Research,12.35,0.37,58,52,63,na
+Chickaree Lake,58,59.5,Charcoal,CAMS 139054,120,100,150,3,406,na
+Chickaree Lake,61.6,62.1,Plant remains,CAMS 155252,165,35,173,3,283,na
+Chickaree Lake,81.5,83.5,Charcoal,CAMS 139055,230,70,233,3,456,*4
+Chickaree Lake,83,83.5,Bulk gyttja,CAMS 139056,395,30,466,330,505,*4
+Chickaree Lake,116,117.5,Charcoal,CAMS 139057,620,70,601,525,679,*4
+Chickaree Lake,116.5,117,Bulk gyttja,CAMS 139058,750,35,686,659,731,*4
+Chickaree Lake,124.5,125,Bulk gyttja,CAMS 155253,840,30,746,693,879,na
+Chickaree Lake,155,156.5,Charcoal,CAMS 139059,1010,50,924,798,1043,na
+Chickaree Lake,191,191.5,Bulk gyttja,CAMS 155254,1310,30,1251,1181,1291,*4
+Chickaree Lake,191.5,192,Charcoal,CAMS 155255,1245,45,1183,1066,1274,*4
+Chickaree Lake,240,240.5,Bulk gyttja,CAMS 159645,1810,30,1752,1637,1821,na
+Chickaree Lake,290,290.5,Bulk gyttja,CAMS 159646,1975,30,1924,1863,1989,na
+Chickaree Lake,340,340.5,Bulk gyttja,CAMS 159647,2375,35,2410,2344,2665,na
+Chickaree Lake,380,380.5,Wood,CAMS 155256,2495,35,2580,2392,2719,na
+Chickaree Lake,423.5,424,Bulk gyttja,CAMS 155257,2685,35,2788,2752,2855,*4
+Chickaree Lake,424,424.5,Charcoal,CAMS 155258,2555,35,2661,2503,2747,*4
+Chickaree Lake,452,453,Charcoal,CAMS 155259,2740,70,2847,2754,3032,na
+Chickaree Lake,488.5,489,Bulk gyttja,CAMS 155260,3045,35,3269,3147,3351,na
+Chickaree Lake,530,530.5,Bulk gyttja,CAMS 159648,3390,30,3636,3565,3704,na
+Chickaree Lake,570.5,571,Bulk gyttja,CAMS 159649,3805,35,4194,4092,4359,na
+Chickaree Lake,605.5,606,Bulk gyttja,CAMS 159650,4050,30,4522,4439,4777,na
+Chickaree Lake,639.5,640,Bulk gyttja,CAMS 155261,4245,40,4825,4647,4865,na
+Chickaree Lake,680.5,681,Bulk gyttja,CAMS 159651,4675,35,5399,5322,5567,na
+Chickaree Lake,720.5,721,Bulk gyttja,CAMS 159652,5175,35,5933,5794,5992,na
+Chickaree Lake,763.5,764,Bulk gyttja,CAMS 159653,5610,40,6379,6310,6476,na
+"*1 = CAMS: Center for Accelerator Mass Spectrometry, Lawrence Livermore National Laboratory, Livermore, CA.",,,,,,,,,,
+"*2 = 210Pb activity, with standard deviation, or conventional radiocarbon years before present CE 1950, with standard deviation.",,,,,,,,,,
+*3 = See Materials and Methods for details on 210Pb modeling and calibration of 14C dates.,,,,,,,,,,
+*4 = Indicates nearly-paired samples from Bulk gyttja gyttja and concentrated charcoal.,,,,,,,,,,

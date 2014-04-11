@@ -31,20 +31,18 @@
 clear all
 
 %% Set working directories: directories where input data are located
-
-workingDir = 'L:\4_archivedData\Dunnette_et_al_2014_NewPhytologist\CH10_biogeochem\';
-
+%%%% IF ALL FILES ARE LOCATED IN THE SAME DIRECTORY AS THIS SCRIPT, CHANGE
+%%%% workdingDir to 'pwd'
 startDir = pwd;             % Record starting path
+workingDir = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_biogeochem\';
 
 %% Load data 
-
 cd(workingDir)              % Change to working directory
 data1 = csvread('CH10_biogeochemData.csv',1,3);
 data2 = csvread('CH10_BSiData.csv',1,0);
 cd(startDir)
 
 %% Define variables from biogeochemData
-
 ageTop1 = data1(:,4);       % cal yr BP
 N15 = data1(:,6);           % N isotopic composition (d15N; o/oo)
 N = data1(:,7);             % Percent (%) N
@@ -53,12 +51,10 @@ C = data1(:,9);             % Percent (%) C
 CN = data1(:,10);           % C:N ratio
 
 %% Define variables from BSiData 
-
 ageTop2 = data2(:,3);       % cal yr BP
 BSi = data2(:,5);           % Percent (%) BSi
 
 %% Create figure
-
 figure('Color',[1 1 1]);
 H = 1.1;
 

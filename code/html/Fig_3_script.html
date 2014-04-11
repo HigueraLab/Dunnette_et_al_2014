@@ -63,10 +63,11 @@ p.footer {
 }
 
   </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Fig_3_script.m</a></li><li><a href="#2">Set working directories: directories where input data are located</a></li><li><a href="#3">Load data and create variables</a></li><li><a href="#4">Define variables from charcoal data</a></li><li><a href="#5">Define variables from MS data</a></li><li><a href="#6">Define "high severity catchment fires" (HSCF)</a></li><li><a href="#7">Create Figure</a></li></ul></div><h2>Fig_3_script.m<a name="1"></a></h2><p>Make Figure 3 from:   Dunnette P.V., P.E. Higuera, K.K. McLauchlan, K.M. Derr, C.E. Briles,   M.H. Keefe. 2014. Biogeochemical impacts of wildfires over four   millennia in a Rocky Mountain subalpine watershed.   New Phytologist Accepted.</p><p>Figure 3. Sediment charcoal and magnetic susceptibility (MS) records. (a) Charcoal accumulation rate (CHAR, black line), interpolated to 10-year intervals, and the 500-year trend (gray line), representing &#8220;background&#8221; CHAR. (b) Residual CHAR values (black line), the threshold used to identify potential fire events (red line), and CHAR values this threshold and thus identified as local fire events (red dots). (c) Residual MS values (gray line), the threshold used to identify MS peaks (red line), MS values exceeding the threshold and thus identified as MS peaks (grey circles), with coincident CHAR and MS peaks identified as high-severity catchment fires (grey circles with red dots).</p><p>FILE REQUIREMENTS:   (1) CH10_MS_charResults.csv -- results from CharAnalysis   (2) CH10_charResults.csv -- results form CharAnalysis, run with MS data</p><p>DEPENDENCIES:   NONE</p><p>CITATION, FILES, AND SELF-AUTHORED FUNCTIONS AVAILABLE FROM FigShare   Higuera, P.E. and P.V. Dunnette. 2014. Data, code, and   figures from Dunnette et al. 2014. figshare.   <a href="http://dx.doi.org/10.6084/m9.figshare.988687">http://dx.doi.org/10.6084/m9.figshare.988687</a></p><p>Created by: P.V. Dunnette Created on: December 2012 Updated: 2/2013; 7/2013; 8/2013; 9/2013; 11/2013; 1/2014 by PVD Edited: 4/2014 for publication, by P.E. Higuera.</p><p>University of Idaho, PaleoEcology and Fire Ecology Lab <a href="http://www.uidaho.edu/cnr/paleoecologylab">http://www.uidaho.edu/cnr/paleoecologylab</a> <a href="mailto:phiguera@uidaho.edu">phiguera@uidaho.edu</a></p><pre class="codeinput">clear <span class="string">all</span>
-</pre><h2>Set working directories: directories where input data are located<a name="2"></a></h2><pre class="codeinput">workingDir = <span class="string">'L:\4_archivedData\Dunnette_et_al_2014\CH10_charcoal\'</span>;
-workingDir2 = <span class="string">'L:\4_archivedData\Dunnette_et_al_2014\CH10_MS\'</span>;
-
+</pre><h2>Set working directories: directories where input data are located<a name="2"></a></h2><pre class="codeinput"><span class="comment">%%%% IF ALL FILES ARE LOCATED IN THE SAME DIRECTORY AS THIS SCRIPT, CHANGE</span>
+<span class="comment">%%%% workdingDir to 'pwd'</span>
 startDir = pwd;     <span class="comment">% Record starting path</span>
+workingDir = <span class="string">'L:\4_archivedData\Dunnette_et_al_2014\CH10_charcoal\'</span>;
+workingDir2 = <span class="string">'L:\4_archivedData\Dunnette_et_al_2014\CH10_MS\'</span>;
 </pre><h2>Load data and create variables<a name="3"></a></h2><pre class="codeinput">cd(workingDir)      <span class="comment">% Change to working directory</span>
 charData = csvread(<span class="string">'CH10_charResults.csv'</span>,1,0);
 cd(workingDir2)      <span class="comment">% Change to working directory</span>
@@ -200,14 +201,14 @@ text(4000,yMax*1.1,<span class="string">'c'</span>,<span class="string">'fontwei
 % University of Idaho, PaleoEcology and Fire Ecology Lab
 % http://www.uidaho.edu/cnr/paleoecologylab
 % phiguera@uidaho.edu
-
 clear all
  
 %% Set working directories: directories where input data are located
+%%%% IF ALL FILES ARE LOCATED IN THE SAME DIRECTORY AS THIS SCRIPT, CHANGE
+%%%% workdingDir to 'pwd'
+startDir = pwd;     % Record starting path
 workingDir = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_charcoal\';
 workingDir2 = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_MS\';
- 
-startDir = pwd;     % Record starting path
  
 %% Load data and create variables
 cd(workingDir)      % Change to working directory
