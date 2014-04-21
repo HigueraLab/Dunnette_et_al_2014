@@ -1,4 +1,4 @@
-core_ID,drive_ID,top_sam_#,bot_sam_#,top_cm,bot_cm,top_age,bot_age,d15NAIR,%N,"d13CVPDB, (17O corrected)",%C,C:N (atomic ratio),bulk_density,LOI_550,LOI_1000
+core_ID,drive_ID,top_sam_#,bot_sam_#,top_cm,bot_cm,top_age,bot_age,d15N,%N,d13C,%C,C:N_atomic_ratio,bulk_density,LOI_550,LOI_1000
 CH07,sh,1,4,0.8,2.9,-60,-54,0.08,2,-27.33,19.07,11.12,0.41,0.38,0.05
 CH07,sh,14,18,7.8,10.5,-37,-28,-0.3,1.28,-26.03,14.01,12.76,0.34,0.29,0.05
 CH07,sh,27,29,14.8,16.5,-13,-5,0.19,1.1,-26.82,13.23,14.03,0.4,0.27,0.04

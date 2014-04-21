@@ -1,4 +1,4 @@
-cmTop(cm),cmBot(cm),ageTop (yr BP),ageBot (yr BP),charVol (cm3),charCount(#)
+cmTop,cmBot,ageTop,ageBot,charVol,charCount
 0.8,1.3,-60,-59,3,0
 1.3,1.9,-59,-57,3,0
 1.9,2.4,-57,-56,3,0

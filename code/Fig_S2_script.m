@@ -41,7 +41,8 @@ clear all
 %%%% workdingDir to 'pwd'
 startDir = pwd;                  % Record starting path
 workingDir = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_pollen\';
-workingDir2 = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_charcoal\';
+workingDir2 = 'L:\1_projectsData\CO_RMNP_project\Analysis\1_Lakes\CH10\charcoal';
+% workingDir2 = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_charcoal\';
 
 %% Input variables
 site = {'Chickaree Lake, CO'};    % site name
@@ -65,7 +66,8 @@ char_peak_id = char_peaks(:,[1 2 6 7 19]);
 
 % Load pollen data:
 cd(workingDir)                   % Change to working directory
-[data taxa] = xlsread('CH10_PollenCounts.xls','c1:di40');
+[data taxa] = xlsread('CH10_PollenCounts.xls','c1:di46');
+% [data taxa] = xlsread('CH10_PollenCounts.xls','c1:di40');
         % Only load pollen data through row 41, 4269 yr BP.
         taxa(1:2) = []; % Delete the first two rows to include only taxa
 pollen_counts = data(:,3:end)';
@@ -82,4 +84,5 @@ cd(startDir)
 	taxa,taxa_plot,char_counts,char_peak_id,peaks,ybp_start,ybp_stop,...
     transform,scdv,p_analog,zd,szd,printing);
 
-pol_percent = pol_dat(:,:,1)';
+pol_taxa = taxa(1:end-6);
+pol_percent = [pollen_cm, pol_ybp pol_dat(:,:,1)'];
