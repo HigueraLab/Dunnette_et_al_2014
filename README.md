@@ -1,10 +1,10 @@
-# **Readme file for:
+## Readme file for:
 
 Higuera, P.E. and P.V. Dunnette. 2014. Data, code, and figures from Dunnette et al. 2014, 
 Biogeochemical impacts of wildfires over four millennia in a Rocky Mountain subalpine 
 watershed. New Phytologist. Figshare. http://dx.doi.org/10.6084/m9.figshare.988687 **
 
-# **Code needed to recreate the analyses in:
+## Code needed to recreate the analyses in:
 Dunnette, P. V., P. E. Higuera, K. K. McLauchlan, K. M. Derr, C. E. Briles, and M. H. Keefe. 
 2014. Biogeochemical impacts of wildfires over four millennia in a Rocky Mountain 
 subalpine watershed. New Phytologist Accepted.**
@@ -16,11 +16,11 @@ or functions, the MATLAB statistics and curve fitting toolboxes are required; al
 required are provided in this archive.
  
 =========================================================
-CHICKAREE LAKE BIOGEOCHEMICAL DATA: CH10_biogeochemData.csv
+###CHICKAREE LAKE BIOGEOCHEMICAL DATA: CH10_biogeochemData.csv
 
 Includes the following raw data (by column): 
-1.	core_ID: Sediment core identification number 
-2.	drive_ID: Drive identifier 
+1. core_ID: Sediment core identification number
+2. drive_ID: Drive identifier 
 3.	top_sam_#: Top sample number
 4.	bot_sam_#: Bottom sample number 
 5.	top_cm: Top depth of sample (cm)
@@ -36,7 +36,7 @@ Includes the following raw data (by column):
 15.	C_acc: Carbon accumulation rate (g cm-2 yr-1)
 16.	MS_SI : Magnetic susceptibility (SI units)
 
-   Missing Values: NaN
+####   Missing Values: NaN
 
    Checksum values:
    CH10_biogeochemData.csv: 635 rows (with headers), 16 columns 
@@ -47,7 +47,7 @@ Includes the following raw data (by column):
 
 =========================================================
 
-CHICKAREE LAKE BIOGENIC SILICA DATA: CH10_BSiData.csv
+**CHICKAREE LAKE BIOGENIC SILICA DATA: CH10_BSiData.csv**
 
 Includes the following raw data (by column): 
 1.	top_cm: top depth of sample (cm)
@@ -71,7 +71,7 @@ Includes the following raw data (by column):
    Column 10 (C:N): 591.52
 
 
-CHICKAREE LAKE LOSS-ON-IGNITION DATA: CH10_LOI_Data.csv
+**CHICKAREE LAKE LOSS-ON-IGNITION DATA: CH10_LOI_Data.csv**
 
 Includes the following raw data (by column): 
 1.	core_ID: Sediment core identification number 
@@ -101,8 +101,8 @@ Includes the following raw data (by column):
    Column 15 (LOI_550): 38.63
 
 =========================================================
-CHICKAREE LAKE CHARCOAL DATA: CH10_charData.csv, CH10_charParams.csv, 
-CH10_charResults.csv
+**CHICKAREE LAKE CHARCOAL DATA: CH10_charData.csv, CH10_charParams.csv, 
+CH10_charResults.csv**
 
 Three files provide the raw input data, the parameters used, and the output data for charcoal 
 analysis via the program CharAnalysis (see ‘Materials and Methods’ in main text, and web site 
@@ -179,8 +179,8 @@ Column 19 (peaks Final): 36
 
 
 =========================================================
-CHICKAREE LAKE MAGNETIC SUSCEPTIBILITY DATA: CH10_MS_charData.csv, 
-CH10_MS_charParams.csv, CH10_MS_charResults.csv
+**CHICKAREE LAKE MAGNETIC SUSCEPTIBILITY DATA: CH10_MS_charData.csv, 
+CH10_MS_charParams.csv, CH10_MS_charResults.csv**
 
 Three files provide the raw input data, the parameters used, and the output data for peak 
 analysis of magnetic susceptibility (MS) data, using the program CharAnalysis (see ‘Materials 
