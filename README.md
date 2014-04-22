@@ -1,21 +1,43 @@
-# Data, code, and figures from Dunnette et al. 2014, Biogeochemical impacts of wildfires over four millennia in a Rocky Mountain subalpine watershed. _New Phytologist_ In Press (doi: 10.1111/nph.12828). 
+> ## Higuera, P.E. and P.V. Dunnette. 2014. Data, code, and figures from Dunnette et al. 2014, Biogeochemical impacts of wildfires over four millennia in a Rocky Mountain subalpine watershed. _New Phytologist_ In Press (doi: 10.1111/nph.12828). figShare: http://dx.doi.org/10.6084/m9.figshare.988687
 
 
 ## Overview
-The repository includes data and scripts needed to recreate the analyses in Dunnette et al. 2014:
 
-[Dunnette, P.V., P.E. Higuera, K.K. McLauchlan, K.M. Derr, C.E. Briles, and M.H. Keefe. 2014. Biogeochemical impacts of wildfires over four millennia in a Rocky Mountain 
+This archive includes data and scripts needed to reproduce the analyses in Dunnette et al. 2014; it includes 49 files and is 23 MB when downloaded as a .zip archive. After extracting the .zip archive, sort by file type. Most data files are in .csv format, while some are in .xls format. Scripts and functions are written for MATLAB software (*.m file type; www.mathworks.com), and each is file fully commented, including dependencies. For some scripts or functions, the MATLAB statistics or curve fitting toolbox is required; all other functions required are provided in this archive.
+
+**Contact:** Philip Higuera, [University of Idaho, PaleoEcology and Fire Ecology Lab](http://www.uidaho.edu/cnr/paleoecologylab "PaleoEcology Lab"), phiguera@uidaho.edu
+
+#### Citation Information
+
+###### Original Reference - *please cite if you use data, code, or figures in your own work*
+
+> [Dunnette, P.V., P.E. Higuera, K.K. McLauchlan, K.M. Derr, C.E. Briles, and M.H. Keefe. 2014. Biogeochemical impacts of wildfires over four millennia in a Rocky Mountain 
 subalpine watershed. _New Phytologist_ In Press doi: 10.1111/nph.12828](https://www.researchgate.net/publication/261439208_Biogeochemical_impacts_of_wildfires_over_four_millennia_in_a_Rocky_Mountain_subalpine_watershed "Dunnette et al. 2014")
 
-
-The archive includes 53 files and is 46 MB when downloaded as a .zip archive. The contents are described below. After extracting the .zip archive, sort by file type. Most data files are in .csv format, while some are in .xls format. Scripts and functions are written for MATLAB software (*.m file type; www.mathworks.com), and each is file fully commented, including dependencies. For some scripts or functions, the MATLAB statistics or curve fitting toolbox is required; all other functions required are provided in this archive.
-
-The repository is stored on figShare: http://dx.doi.org/10.6084/m9.figshare.988687 
-
-___PLEASE CITE THE ORIGINAL ARTICLE IF YOU USE THE DATA, CODE, OR FIGURES IN YOUR OWN WORK___
+*The definitive version of this paper is available at http://www.newphytologist.com 
 
 
- 
+
+###### Online Resources 
+
+> Higuera, P.E. and P.V. Dunnette. 2014. Data, code, and figures from Dunnette et al. 2014, Biogeochemical impacts of wildfires over four millennia in a Rocky Mountain subalpine watershed. _New Phytologist_ In Press (doi: 10.1111/nph.12828). figShare: http://dx.doi.org/10.6084/m9.figshare.988687
+
+Also available from: 
+* github: https://github.com/HigueraLab/Dunnette_et_al_2014_NewPhytologist/
+* University of Idaho PaleoEcology and Fire Ecology Lab: http://www.uidaho.edu/cnr/paleoecologylab 
+
+#### Contents
+
+1. Chickaree Lake Biogeochemical Data
+2. Chickaree Lake Biogenic Silica Data
+3. Chicakree Lake Loss-on-ignition Data
+4. Chickaree Lake Charcoal Data
+5. Chickaree Lake Magnetic Susceptibility Data
+6. Chickaree Lake Chronology Data
+7. Chickaree Lake Pollen Data
+8. MATLAB Code to generate figures
+9. Figures
+
 ## 1. Chickaree Lake Biogeochemical Data 
 
 #### File: `CH10_biogeochemData.csv`
@@ -78,7 +100,7 @@ ___PLEASE CITE THE ORIGINAL ARTICLE IF YOU USE THE DATA, CODE, OR FIGURES IN YOU
 
 ## 3. Chickaree Lake Loss-on-ignition Data
 
-#### File: ```CH10_LOI_Data.csv```
+#### File: `CH10_LOI_Data.csv`
 
 #### Includes the following raw data (by column): 
 1.	core_ID: Sediment core identification number 
@@ -116,24 +138,24 @@ Three files provide the raw input data, the parameters used, and the output data
 analysis via the program _CharAnalysis_ (see _Materials and Methods_ in main text, and web site 
 https://sites.google.com/site/charanalysis/). 
 
-#### 4.1 ```CH10_charData.csv```
+#### 4.1 `CH10_charData.csv`
 
 ##### Includes the following raw data (by column):
 1.	cmTop: top depth (cm) of the sample
 2.	cmBot: bottom depth (cm) of the sample
-3.	ageTop (yr BP): estimated age at top of sample (cal. yr before CE 1950)
-4.	ageBot (yr BP): estimated age at bottom of sample (cal. yr before CE 1950)
-5.	charVol (cm3): volume of sediment subsample from which charcoal was prepared (cm3)
-6.	charCount (#): pieces of charcoal counted in the sample (#)
+3.	ageTop: estimated age at top of sample (cal. yr before CE 1950)
+4.	ageBot: estimated age at bottom of sample (cal. yr before CE 1950)
+5.	charVol: volume of sediment subsample from which charcoal was prepared (cm3)
+6.	charCount: pieces of charcoal counted in the sample (#)
 
 ##### Missing values: None
 
 ##### Checksum values:
 * 1202 rows (with headers), 6 columns 
-* Column 3 (ageTop (yr BP)): 2446519 
-* Column 6 (charCount (#)): 38218
+* Column 3 (ageTop): 2446519 
+* Column 6 (charCount): 38218
 
-#### 4.2 ```CH10_charParams.csv```
+#### 4.2 `CH10_charParams.csv`
 
 See CharAnalysis User's Guide for description of parameters file, available at the web 
 site linked to above.
@@ -144,7 +166,7 @@ site linked to above.
 * 26 rows (with headers), 5 columns
 * Column 3 (Parameters): -39779
  
-#### 4.3 ```CH10_charResults.csv```
+#### 4.3 `CH10_charResults.csv`
 
 #### Includes the following derived data (reflecting interpolation): 
 1.	cmTop_i: top depth (cm) of interpolated sample
@@ -194,9 +216,9 @@ as set in *_charParams.csv file
 * Column 19 (peaks Final): 36
 
 
-## 5. Chickaree Lake Magnetic Susceptibility Data CH10_MS_charData.csv, 
+## 5. Chickaree Lake Magnetic Susceptibility Data 
 
-#### Files : ```CH10_MS_charParams.csv```, ```CH10_MS_charData.csv```, ```CH10_MS_charResults.csv```
+#### Files : `CH10_MS_charParams.csv`, `CH10_MS_charData.csv`, `CH10_MS_charResults.csv`
 
 Three files provide the raw input data, the parameters used, and the output data for peak 
 analysis of magnetic susceptibility (MS) data, using the program _CharAnalysis_ (see _Materials 
@@ -231,7 +253,7 @@ negative data.
 
 ## 6. Chickaree Lake Chronology Data
 
-#### Files: ```CH10_210Pb_data.xls```, ```CH10_ageDepthData.xls```, ```CH10_ageDepthData.csv```, ```CH10_radiometricSamples.csv```, ```CH10_14Cdates.zip```
+#### Files: `CH10_210Pb_data.xls`, `CH10_ageDepthData.xls`, `CH10_ageDepthData.csv`, `CH10_radiometricSamples.csv`, `CH10_14Cdates.zip`
 
 These files provide the chronology data presented in Table S1 (CH10_radiometricSamples.csv), 
 the age-depth data presented in Figure 2 (CH10_ageDepthData.csv), and the input files used in 
@@ -268,7 +290,7 @@ Includes the following raw data (by column):
 
 ## 7. Chickaree Lake Pollen Data
 
-#### Files: ```CH10_PollenCounts.xls```, ```CH10_pollenPercentages.csv```
+#### Files: `CH10_PollenCounts.xls`, `CH10_pollenPercentages.csv`
 
 Raw pollen data needed to use in the function pollenDiagram_ROMO.m, to create Fig. S2 
 (*.xls), and pollen percentages (*.csv). 
@@ -323,9 +345,9 @@ drive (A, B, C,...).
 * Column 10 (Pseudotsuga/Larix): 12 
 * Column 102 (Nuphar): 13.19
 
-## 8. Matlab code to generate figures in Dunnette et al. 2014
+## 8. MATLAB code to generate figures in Dunnette et al. 2014
 
-#### Files: All are Matlab files; figure scripts inclues "_scripts" while all other files are functions called upon by the scripts. To run the script files, the function files must be in the working directory. See individual files for readme information, including dependencies. 
+#### Files: All are MATLAB files; figure scripts inclues "_scripts" while all other files are functions called upon by the scripts. To run the script files, the function files must be in the working directory. See individual files for readme information, including dependencies. 
 
 * auto.m
 * corr_p_adj_N.m
@@ -340,7 +362,7 @@ drive (A, B, C,...).
 
 ## 9. Figure files from Dunnette et al. 2014
 
-Figures come in two formats .tif and .fig. The latter is the Matlab figure file format. _NOTE:_ There is no .fig file for figure 1.  
+Figures come in two formats .tif and .fig. The latter is the MATLAB figure file format. _NOTE:_ There is no .fig file for figure 1.  
 
 #### Files:
 * Fig_1.jpg
