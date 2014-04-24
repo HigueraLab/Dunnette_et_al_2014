@@ -46,10 +46,12 @@ clear all
 %%%% workdingDir to 'pwd'
 startDir = pwd;     % Record starting path
 workingDir = 'L:\4_archivedData\Dunnette_et_al_2014\';
+workingDir2 = 'L:\4_archivedData\Dunnette_et_al_2014\';
  
 %% Load data and create variables
 cd(workingDir)      % Change to working directory
 charData = csvread('CH10_charResults.csv',1,0);
+cd(workingDir2)      % Change to working directory
 msData = csvread('CH10_MS_charResults.csv',1,0);
  
 cd(startDir)        % Change directory back to starting directory.

@@ -1,10 +1,10 @@
 %% Fig_S2_script.m
 %
 % Make Figure S2 from:
-%   Dunnette P.V., P.E. Higuera, K.K. McLauchlan, K.M. Derr, C.E. Briles, 
-%   M.H. Keefe. 2014. Biogeochemical impacts of wildfires over four 
-%   millennia in a Rocky Mountain subalpine watershed. 
-%   New Phytologist Accepted.
+% Dunnette P.V., P.E. Higuera, K.K. McLauchlan, K.M. Derr, C.E. Briles, 
+% M.H. Keefe. 2014. Biogeochemical impacts of wildfires over four millennia 
+% in a Rocky Mountain subalpine watershed. New Phytologist. In Press, doi: 
+% 10.1111/nph.12828
 %
 % Fig. S2. Pollen diagram for Chickaree Lake. Pollen was sampled at a
 % median interval of 7.5 cm (~60 yr) in the upper 175 cm of the core and a
@@ -22,8 +22,10 @@
 %   the output from this function.
 %
 % CITATION, FILES, AND SELF-AUTHORED FUNCTIONS AVAILABLE FROM FigShare
-%   Higuera, P.E. and P.V. Dunnette. 2014. Data, code, and 
-%   figures from Dunnette et al. 2014. figshare. 
+%   Higuera, P.E. and P.V. Dunnette. 2014. Data, code, and figures from 
+%   Dunnette et al. 2014, Biogeochemical impacts of wildfires over four 
+%   millennia in a Rocky Mountain subalpine watershed. New Phytologist 
+%   In Press (doi: 10.1111/nph.12828). figShare: 
 %   http://dx.doi.org/10.6084/m9.figshare.988687
 %
 % Created by: P.E. Higuera
@@ -40,9 +42,7 @@ clear all
 %%%% IF ALL FILES ARE LOCATED IN THE SAME DIRECTORY AS THIS SCRIPT, CHANGE
 %%%% workdingDir to 'pwd'
 startDir = pwd;                  % Record starting path
-workingDir = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_pollen\';
-workingDir2 = 'L:\1_projectsData\CO_RMNP_project\Analysis\1_Lakes\CH10\charcoal';
-% workingDir2 = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_charcoal\';
+workingDir = 'L:\4_archivedData\Dunnette_et_al_2014\';
 
 %% Input variables
 site = {'Chickaree Lake, CO'};    % site name
@@ -58,17 +58,17 @@ printing = 0;        % Save file? 1 == yes, 0 == no
 
 %% Load input data:
 % Load charcoal data:
-cd(workingDir2)                   % Change to working directory
+cd(workingDir)                   % Change to working directory
 char_counts = csvread('CH10_charData.csv',1,0);
 char_peaks = csvread('CH10_charResults.csv',1,0);
 char_peak_id = char_peaks(:,[1 2 6 7 19]);
 % char_peaks = -999;
 
 % Load pollen data:
-cd(workingDir)                   % Change to working directory
-[data taxa] = xlsread('CH10_PollenCounts.xls','c1:di46');
-% [data taxa] = xlsread('CH10_PollenCounts.xls','c1:di40');
-        % Only load pollen data through row 41, 4269 yr BP.
+% [data taxa] = xlsread('CH10_PollenCounts.xls','c1:di46');
+[data taxa] = xlsread('CH10_PollenCounts.xls','c1:di40');
+        % Only load pollen data through row 40, 4269 yr BP.
+        taxa(2:end,:) = []; % % Delete all but first row.
         taxa(1:2) = []; % Delete the first two rows to include only taxa
 pollen_counts = data(:,3:end)';
 pollen_cm = data(:,1);

@@ -52,7 +52,8 @@ clear all
 %%%% IF ALL FILES ARE LOCATED IN THE SAME DIRECTORY AS THIS SCRIPT, CHANGE
 %%%% workdingDir to 'pwd'
 startDir = pwd;     % Record starting path
-workingDir = 'L:\4_archivedData\Dunnette_et_al_2014\';
+workingDir = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_biogeochem\';
+workingDir2 = 'L:\4_archivedData\Dunnette_et_al_2014\CH10_charcoal\';
 
 %% User-set parameters, for SEA.m and plotting
 params.interpValue = 5 ;        % [yr] Years to interpolate to 
@@ -68,6 +69,7 @@ colName = {'topCm';'botCm';'topAge';'botAge';...
    ['  BlkDens  ';'(g cm^{-3})'];...
    ['      C_a_c_c      ' ; '(g cm^{-2} yr^{-1})']};    % Column headers, 
                                                         % and units
+cd(workingDir2)
 charData = csvread('CH10_charResults.csv',1,0);
 peakMag = charData(:,21);   % [#/cm^2] Peak magnitudes
 charYbp = charData(:,2);%-0.5*mean(diff(charData(:,2)));  % [cal yr BP]
